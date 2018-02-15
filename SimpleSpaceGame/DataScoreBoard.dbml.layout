@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DataScoreBoard">
+  <DataContextMoniker Name="/DataScoreBoardDataContext" />
+  <nestedChildShapes>
+    <classShape Id="4c07d60d-2e07-4195-bfea-756c6a768fe9" absoluteBounds="3.125, 4.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataScoreBoardDataContext/SzymonKonopka_ScoreBoard" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d041a8ca-5bbf-4f0a-8b80-634849726c6f" absoluteBounds="3.14, 4.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

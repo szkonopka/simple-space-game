@@ -1,0 +1,43 @@
+c:\users\user\documents\visual studio 2015\Projects\SzymonKonopkaLab7\SzymonKonopkaLab7\bin\Debug\SzymonKonopkaLab7.exe.config
+c:\users\user\documents\visual studio 2015\Projects\SzymonKonopkaLab7\SzymonKonopkaLab7\bin\Debug\SzymonKonopkaLab7.exe
+c:\users\user\documents\visual studio 2015\Projects\SzymonKonopkaLab7\SzymonKonopkaLab7\bin\Debug\SzymonKonopkaLab7.pdb
+c:\users\user\documents\visual studio 2015\Projects\SzymonKonopkaLab7\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.csprojResolveAssemblyReference.cache
+c:\users\user\documents\visual studio 2015\Projects\SzymonKonopkaLab7\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.Properties.Resources.resources
+c:\users\user\documents\visual studio 2015\Projects\SzymonKonopkaLab7\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.csproj.GenerateResource.Cache
+c:\users\user\documents\visual studio 2015\Projects\SzymonKonopkaLab7\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.exe
+c:\users\user\documents\visual studio 2015\Projects\SzymonKonopkaLab7\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.pdb
+c:\users\user\documents\visual studio 2015\Projects\SzymonKonopkaLab7\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.SpaceWars.resources
+c:\users\user\documents\visual studio 2015\Projects\SzymonKonopkaLab7\SzymonKonopkaLab7\bin\Debug\resources\spaceship-run.png
+c:\users\user\documents\visual studio 2015\Projects\SzymonKonopkaLab7\SzymonKonopkaLab7\bin\Debug\resources\spaceship-stay.png
+c:\users\user\documents\visual studio 2015\Projects\SzymonKonopkaLab7\SzymonKonopkaLab7\bin\Debug\resources\spaceship-run-1.png
+c:\users\user\documents\visual studio 2015\Projects\SzymonKonopkaLab7\SzymonKonopkaLab7\bin\Debug\resources\spaceship-run-2.png
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\bin\Debug\SzymonKonopkaLab7.exe.config
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.exe
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.pdb
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\bin\Debug\resources\spaceship-run-1.png
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\bin\Debug\resources\spaceship-run-2.png
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\bin\Debug\resources\spaceship-run.png
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\bin\Debug\resources\spaceship-stay.png
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\bin\Debug\SzymonKonopkaLab7.exe
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\bin\Debug\SzymonKonopkaLab7.pdb
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.SpaceWars.resources
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.Properties.Resources.resources
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.csproj.GenerateResource.Cache
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.Startup.resources
+C:\Users\User\Documents\cpc2017-2\szymon_konopka\Lab7\zadanie_domowe\SzymonKonopkaLab7\bin\Debug\resources\04B_03__.TTF
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\bin\Debug\SimpleSpaceGame.exe.config
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.SpaceWars.resources
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\obj\Debug\SimpleSpaceGame.Properties.Resources.resources
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.Startup.resources
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\obj\Debug\SzymonKonopkaLab7.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\bin\Debug\resources\spaceship-run-1.png
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\bin\Debug\resources\spaceship-run-2.png
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\bin\Debug\resources\spaceship-run.png
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\bin\Debug\resources\spaceship-stay.png
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\bin\Debug\resources\04B_03__.TTF
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\bin\Debug\SimpleSpaceGame.exe
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\bin\Debug\SimpleSpaceGame.pdb
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\obj\Debug\SimpleSpaceGame.exe
+C:\Users\User\Desktop\simple-space-game\SzymonKonopkaLab7\obj\Debug\SimpleSpaceGame.pdb

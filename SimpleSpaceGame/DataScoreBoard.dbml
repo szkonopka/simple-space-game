@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_9B1FC5_cpc2017e2" Class="DataScoreBoardDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=sql5037.site4now.net;Initial Catalog=DB_9B1FC5_cpc2017e2;Persist Security Info=True;User ID=DB_9B1FC5_cpc2017e2_admin" SettingsObjectName="SimpleSpaceGame.Properties.Settings" SettingsPropertyName="DB_9B1FC5_cpc2017e2ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.[SzymonKonopka-ScoreBoard]" Member="SzymonKonopka_ScoreBoards">
+    <Type Name="SzymonKonopka_ScoreBoard">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PlayerName" Type="System.String" DbType="VarChar(127) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Time" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
