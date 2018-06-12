@@ -12,7 +12,7 @@ namespace SimpleSpaceGame
     /// <summary>
     /// Klasa tworząca obiekt asteroidy - wieloboku, których będzie musiał unikać statek na bazie wykrywania kolizji
     /// </summary>
-    class Asteroid : ISpaceObject
+    class Asteroid : SpaceObject
     {
         readonly int MaxRadius = 50;
         readonly int MinRadius = 30;
@@ -20,9 +20,6 @@ namespace SimpleSpaceGame
         readonly int MinAmountOfVertex = 5;
         readonly int MaxAmountOfVertex = 8;
 
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int Speed { get; set; }
         public int Radius { get; set; }
         public int AmountOfVertex { get; set; }
         private Color AsteroidColor { get; set; }
@@ -40,7 +37,7 @@ namespace SimpleSpaceGame
             this.Radius = rndGen.Next(MinRadius, MaxRadius);
             X = rndGen.Next(-(int)Math.Floor((double)form.Size.Width), (int)Math.Floor((double)form.Size.Width));
             Y = 0;
-            Speed = rndGen.Next(5, 10);
+            MoveValue = rndGen.Next(10, 20);
 
             AsteroidColor = Color.FromArgb(rndGen.Next(100, 255), rndGen.Next(100, 255), rndGen.Next(100, 255));
            

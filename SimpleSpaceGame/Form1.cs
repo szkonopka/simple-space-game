@@ -13,10 +13,20 @@ using System.Windows.Forms;
 
 namespace SimpleSpaceGame
 {
+   
+    public struct Directions
+    {
+        public bool right;
+        public bool left;
+        public bool up;
+        public bool down;
+        public bool shoot;
+    }
+
     public partial class SpaceWars : Form
     {
         // Database context
-        //private DataScoreBoardDataContext ctx;
+        // private DataScoreBoardDataContext ctx;
 
         // Objects declaration
         private Spaceship spaceship;
@@ -33,6 +43,17 @@ namespace SimpleSpaceGame
         private Font PixelFont;
         private int secondsAlive = 0;
         private bool gameStopped = false;
+
+        private System.Threading.Timer starsUpdatingTimer;
+        private System.Threading.Timer spaceshipUpdatingTimer;
+        private System.Threading.Timer asteroidUpdatingTimer;
+        public Directions dir = new Directions();
+
+        float Bonus = 10;
+        int CurrentPoints = 0;
+        float Multiplier = 1.0f;
+        int MultiplierUpgrade = 1000;
+        int MultiplierCounter = 0;
 
         public SpaceWars()
         {
@@ -53,9 +74,20 @@ namespace SimpleSpaceGame
             InitializeComponent();
             Styling();
 
+            
+            dir.right = false;
+            dir.left = false;
+            dir.up = false;
+            dir.down = false;
+            this.hpBar.Value = spaceship.CurrentHP;
             starsTimer.Start();
-            engineTimer.Start();
-            gameTimer.Start();
+            //engineTimer.Start();
+            //gameTimer.Start();
+            
+
+            starsUpdatingTimer = new System.Threading.Timer(new TimerCallback(this.UpdateStars), null, 0, 10);
+            spaceshipUpdatingTimer = new System.Threading.Timer(new TimerCallback(this.updateSpaceship), null, 10, 10000);
+            //asteroidUpdatingTimer = new System.Threading.Timer(new TimerCallback(this.UpdateAsteroids), null, 0, 10);
         }
 
         /// <summary>
@@ -79,10 +111,23 @@ namespace SimpleSpaceGame
         private void Styling()
         {
             InitCustomFont();
-            this.labelTime.Font = PixelFont;
             this.labelTimeValue.Font = PixelFont;
             this.labelEndGame.Font = PixelFont;
             this.labelEndGame.Visible = false;
+            this.labelWeaponState.Font = PixelFont;
+        }
+
+        private void SpaceWars_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.W) dir.up = false;
+
+            if (e.KeyCode == Keys.S) dir.down = false;
+
+            if (e.KeyCode == Keys.A) dir.left = false;
+
+            if (e.KeyCode == Keys.D) dir.right = false;
+
+            if (e.KeyCode == Keys.Space) dir.shoot = false;
         }
 
         /// <summary>
@@ -92,27 +137,19 @@ namespace SimpleSpaceGame
         /// <param name="e"></param>
         private void SpaceWars_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.W)
-            {
-                spaceship.LastY = spaceship.Y;
-                spaceship.Y -= spaceship.MoveValue;
-                Invalidate();
-            } else if (e.KeyCode == Keys.S)
-            {
-                spaceship.LastY = spaceship.Y;
-                spaceship.Y += spaceship.MoveValue;
-                Invalidate();
-            } else if (e.KeyCode == Keys.A)
-            {
-                spaceship.LastX = spaceship.X;
-                spaceship.X -= spaceship.MoveValue;
-                Invalidate();
-            } else if (e.KeyCode == Keys.D)
-            {
-                spaceship.LastX = spaceship.X;
-                spaceship.X += spaceship.MoveValue;
-                Invalidate();
-            } else if (e.KeyCode == Keys.Space)
+
+            if (e.KeyCode == Keys.W) dir.up = true;
+
+            if (e.KeyCode == Keys.S) dir.down = true;
+
+            if (e.KeyCode == Keys.A) dir.left = true;
+
+            if (e.KeyCode == Keys.D) dir.right = true;
+
+            if (e.KeyCode == Keys.Space) dir.shoot = true;
+
+            /*
+            if (e.KeyCode == Keys.Space)
             {
                 gameStopped = !gameStopped;
                 if(gameStopped)
@@ -123,7 +160,9 @@ namespace SimpleSpaceGame
                     ResumeGame();
                 }
             }
-           
+            Invalidate();
+            */
+
         }
 
         /// <summary>
@@ -135,7 +174,9 @@ namespace SimpleSpaceGame
         {
             RedrawStars(e);
             RedrawAsteroids(e);
-            spaceship.Draw(e);
+            spaceship.Draw(e, dir);
+            spaceship.MoveBullets();
+            this.labelWeaponState.Text = this.spaceship.CurrentWeaponState;
         }
 
         /// <summary>
@@ -159,11 +200,11 @@ namespace SimpleSpaceGame
         /// <summary>
         /// Update all stars in axis Y position (axis X position is totally random)
         /// </summary>
-        private void UpdateStars()
+        private void UpdateStars(object StateObj)
         {
             foreach (Star star in starList)
             {
-                star.Y += star.Speed;
+                star.Y += star.MoveValue;
                 if (star.Y >= this.Width)
                 {
                     star.Y = 0;
@@ -195,27 +236,81 @@ namespace SimpleSpaceGame
         /// <summary>
         /// Update all asteroids in axis Y position(axis X position is totally random) and detecting collision (if collision was detected then restart the game)
         /// </summary>
-        private void UpdateAsteroids()
+        private void UpdateAsteroids(object StateObj)
         {
+            bool leave = false;
             foreach(Asteroid asteroid in asteroidInRoundList)
-            {
+            {   
                 for(int i = 0; i < asteroid.AmountOfVertex; i++)
                 {
-                    asteroid.AsteroidPoints[i].Y += asteroid.Speed;
+                    asteroid.AsteroidPoints[i].Y += asteroid.MoveValue;
+
+                    foreach (var bullet in this.spaceship.Bullets)
+                    {
+                        if (DetectBulletsCollision(asteroid, bullet, i))
+                        {
+                            //this.spaceship.Bullets.Remove(bullet);
+                            Bonus = 100 * Multiplier;
+                            leave = true;
+                            break;
+                        }
+                    }
 
                     if (asteroid.AsteroidPoints[i].Y >= this.Width)
                     {
                         asteroidInRoundList.Remove(asteroid);
-                        return;
+                        leave = true;
+                        break;
                     }
+
+                    if (leave) break;
+
                     if(DetectCollision(asteroid, i))
-                        return;
+                    {
+                        this.spaceship.CurrentHP -= 25;
+                        if(spaceship.CurrentHP <= 0)
+                        {
+                            this.hpBar.Value = 0;
+                            StopGame();
+                            this.Visible = false;
+                            SaveResult results = new SaveResult(this.CurrentPoints);
+                            results.ShowDialog();
+                            this.Close();
+                            //System.Threading.Thread.Sleep(100);
+                            //this.labelTimeValue.Text = "0 s";
+                            //secondsAlive = 0;
+                            //spaceship = new Spaceship(this);
+                            //Restart();
+
+                            leave = true;
+                            break;
+                        }
+                        this.hpBar.Value = spaceship.CurrentHP;
+                        leave = true;
+                        break;
+                    }   
                 }
+                if (leave) break;
             }
             if (asteroidInRoundList.Count() == 0)
                 InitNewAsteroids();
 
+            
             Invalidate();
+        }
+
+        private bool DetectBulletsCollision(Asteroid asteroid, Bullet bullet, int asteroidVertex)
+        {
+            if ((asteroid.AsteroidPoints[asteroidVertex].X < bullet.X + spaceship.CurrentImg.Width / 5) && (asteroid.AsteroidPoints[asteroidVertex].X > bullet.X))
+            {
+                if ((asteroid.AsteroidPoints[asteroidVertex].Y < bullet.Y + spaceship.CurrentImg.Height / 5) && (asteroid.AsteroidPoints[asteroidVertex].Y > bullet.Y))
+                {
+                    asteroidInRoundList.Remove(asteroid);
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
 
         private bool DetectCollision(Asteroid asteroid, int asteroidVertex)
@@ -224,13 +319,7 @@ namespace SimpleSpaceGame
             {
                 if ((asteroid.AsteroidPoints[asteroidVertex].Y < spaceship.Y + spaceship.CurrentImg.Height / 5) && (asteroid.AsteroidPoints[asteroidVertex].Y > spaceship.Y))
                 {
-                    StopGame();
-
-                    System.Threading.Thread.Sleep(100);
-                    this.labelTimeValue.Text = "0 s";
-                    secondsAlive = 0;
-                    spaceship = new Spaceship(this);
-                    Restart();
+                    asteroidInRoundList.Remove(asteroid);
                     return true;
                 }
                 return false;
@@ -243,7 +332,7 @@ namespace SimpleSpaceGame
             engineTimer.Stop();
             starsTimer.Stop();
             gameTimer.Stop();
-
+            
             //this.KeyDown -= SpaceWars_KeyDown;
         }
 
@@ -271,12 +360,30 @@ namespace SimpleSpaceGame
             starsTimer.Start();
             gameTimer.Start();
             this.labelEndGame.Visible = false;
+            this.hpBar.Value = this.spaceship.CurrentHP;
         }
 
         private void starsTimer_Tick(object sender, EventArgs e)
         {
-            UpdateAsteroids();
-            UpdateStars();
+            UpdateAsteroids(null);
+            //UpdateStars(null);
+        }
+
+        private void updateObjects()
+        {
+            //UpdateAsteroids();
+            //UpdateStars();
+            //Thread.Sleep(100);
+        }
+
+        private void updateSpaceship(object StateObj)
+        {
+            SpaceShipAnim = !SpaceShipAnim;
+            if (SpaceShipAnim)
+                spaceship.CurrentImg = spaceship.RunImgSecond;
+            else
+                spaceship.CurrentImg = spaceship.RunImgFirst;
+            //Thread.Sleep(100);
         }
 
         private void engineTimer_Tick(object sender, EventArgs e)
@@ -297,17 +404,17 @@ namespace SimpleSpaceGame
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
-            secondsAlive += 1;
-            string timeDoDisplay;
-            if (secondsAlive < 60)
-                timeDoDisplay = secondsAlive.ToString() + " s";
-            else
+            MultiplierCounter += (int)(10 * Multiplier + Bonus);
+
+            if (MultiplierCounter % MultiplierUpgrade == 0)
             {
-                int minutes = secondsAlive / 60;
-                int seconds = secondsAlive % 60;
-                timeDoDisplay = minutes.ToString() + " m " + seconds.ToString() + " s";
+                MultiplierCounter = 0;
+                Multiplier += 0.1f;
             }
-            this.labelTimeValue.Text = timeDoDisplay;
+
+            CurrentPoints += (int) (10 * Multiplier + Bonus);
+            Bonus = 0;
+            this.labelTimeValue.Text = CurrentPoints.ToString();
         }
     }
 }
