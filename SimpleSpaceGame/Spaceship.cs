@@ -18,7 +18,7 @@ namespace SimpleSpaceGame
         public int Y { get; set; }
         public int LastX { get; set; }
         public int LastY { get; set; }
-        public int MoveValue { get; set; } = 10;
+        public int MoveValue { get; set; } = 5;
 
         // Zmienne Image, w których przechowujemy kolejne klatki animowanego statku - poklatkowość dwóch sprowadza się do animowania ogni z wydechu pojazdu
         public Image StayImg { get; set; } = Image.FromFile(@"..\..\img\spaceship-stay.png");
