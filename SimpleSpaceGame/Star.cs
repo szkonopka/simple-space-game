@@ -13,23 +13,21 @@ using System.Windows.Forms;
 /// </summary>
 namespace SimpleSpaceGame
 {
-    public class Star : ISpaceObject
+    public class Star : SpaceObject
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int Speed { get; set; }
-
+        public int Height { get; set; }
+        public int Width { get; set; }
         /// <summary>
         /// Konstruktor z predefinowanymi parametrami
         /// </summary>
         /// <param name="X"></param>
         /// <param name="Y"></param>
-        /// <param name="Speed"></param>
-        public Star(int X, int Y, int Speed)
+        /// <param name="MoveValue"></param>
+        public Star(int X, int Y, int MoveValue)
         {
             this.X = X;
             this.Y = Y;
-            this.Speed = Speed;
+            this.MoveValue = MoveValue;
         }
 
         /// <summary>
@@ -41,7 +39,9 @@ namespace SimpleSpaceGame
         {
             X = rndGen.Next(-(int)Math.Floor((double)form.Size.Width), (int)Math.Floor((double)form.Size.Width));
             Y = rndGen.Next(-(int)Math.Floor((double)form.Size.Height), (int)Math.Floor((double)form.Size.Height));
-            Speed = rndGen.Next(20, 50);
+            MoveValue = rndGen.Next(5, 20);
+            Height = rndGen.Next(5, 50);
+            Width = 1;
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace SimpleSpaceGame
         public void Draw(PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            e.Graphics.DrawRectangle(new Pen(Color.FromArgb(222, 222, 222)), new Rectangle(X, Y, 1, 50));
+            e.Graphics.DrawRectangle(new Pen(Color.FromArgb(30, 30, 30)), new Rectangle(X, Y, Width, Height));
         }
     }
 }
